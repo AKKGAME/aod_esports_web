@@ -1,0 +1,208 @@
+/* --- Basic Styling & Layout --- */
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    line-height: 1.6;
+}
+
+header {
+    background-color: #4a5568; /* Darker gray-blue */
+    color: white;
+    text-align: center;
+    padding: 1.5rem 0;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+header h1 {
+    margin: 0;
+    font-size: 1.75rem;
+}
+
+main {
+    max-width: 800px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+}
+
+h2, h3 {
+    border-bottom: 2px solid #eee;
+    padding-bottom: 10px;
+    margin-top: 0;
+    color: #2d3748;
+}
+
+/* --- Summary Section (Dashboard) --- */
+.summary {
+    display: flex;
+    justify-content: space-around;
+    text-align: center;
+    margin: 20px 0 30px;
+    flex-wrap: wrap; /* For smaller screens */
+    gap: 15px;
+}
+
+.summary-box {
+    flex: 1;
+    min-width: 200px; /* Ensure boxes don't get too small */
+    padding: 20px;
+    border-radius: 8px;
+    background-color: #f7fafc;
+    border: 1px solid #e2e8f0;
+}
+
+.summary-box h2 {
+    margin: 0 0 10px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #718096;
+    border-bottom: none;
+}
+
+.summary-box p {
+    font-size: 1.75rem;
+    font-weight: 700;
+    margin: 0;
+}
+
+/* Colors for summary */
+#total-income { color: #48bb78; } /* Green */
+#total-expense { color: #f56565; } /* Red */
+#balance { color: #4299e1; } /* Blue */
+
+
+/* --- Transaction Form --- */
+.transaction-form {
+    margin-bottom: 30px;
+}
+
+.form-control {
+    margin-bottom: 15px;
+}
+
+.form-control label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 600;
+}
+
+.form-control input[type="text"],
+.form-control input[type="number"],
+.form-control select {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #cbd5e0;
+    border-radius: 6px;
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    font-size: 1rem;
+}
+
+.form-control input:focus,
+.form-control select:focus {
+    outline: none;
+    border-color: #4299e1;
+    box-shadow: 0 0 0 2px rgba(66, 153, 225, 0.2);
+}
+
+.btn {
+    display: block;
+    width: 100%;
+    padding: 12px;
+    background-color: #4a5568;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 600;
+    transition: background-color 0.2s ease;
+}
+
+.btn:hover {
+    background-color: #2d3748;
+}
+
+/* --- History List --- */
+.history {
+    margin-top: 30px;
+}
+
+.list {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+.list li {
+    background-color: #fff;
+    border: 1px solid #e2e8f0;
+    border-right-width: 5px; /* Default border */
+    padding: 15px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 1.1rem;
+    border-radius: 4px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.03);
+    word-break: break-word; /* Prevents long text from overflowing */
+}
+
+/* Specific border colors for income/expense */
+.list li.income { 
+    border-right-color: #48bb78; /* Green */
+}
+.list li.expense { 
+    border-right-color: #f56565; /* Red */
+}
+
+.list li span {
+    font-weight: 600;
+    white-space: nowrap; /* Prevents amount from wrapping */
+    margin-left: 15px;
+}
+
+/* For Validation Errors */
+.errors {
+    background-color: #fed7d7;
+    color: #c53030;
+    border: 1px solid #f56565;
+    border-radius: 6px;
+    padding: 10px 15px;
+    margin-top: 20px;
+}
+
+.errors ul {
+    padding-left: 20px;
+    margin: 0;
+}
+
+/* Success Message Box */
+.alert-success {
+    background-color: #d1e7dd; /* Light green */
+    color: #0f5132;
+    border: 1px solid #badbcc;
+    padding: 1rem;
+    border-radius: 6px;
+    margin-bottom: 20px;
+}
+
+/* Delete Button Style */
+.btn-delete {
+    background-color: #f56565; /* Red */
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    transition: background-color 0.2s ease;
+}
+
+.btn-delete:hover {
+    background-color: #c53030; /* Darker red */
+}
