@@ -13,27 +13,27 @@ class EventCalendarWidget extends FullCalendarWidget
     protected static ?int $sort = 1; 
     public Model | string | null $model = Event::class;
 
-    // "New event" ခလုတ် ဖြုတ်ရန် (အရင်အတိုင်း)
+    // "New event" ခလုတ် ဖြုတ်ရန်
     public function headerActions(): array
     {
         return [];
     }
 
-    // Drag & Drop (ဆွဲချ) ဖွင့်ရန် (အရင်အတိုင်း)
+    // Drag & Drop ဖွင့်ရန်
     public static function canManageEvents(): bool
     {
         return true;
     }
 
-    // === (၁) (အမှားပြင်ဆင်ပြီး) Function တည်ဆောက်ပုံ အမှန် ===
+    // Drag & Drop Logic (Error ရှင်းပြီးသား)
     public function onEventDrop(
         array $event,
         array $oldEvent,
         array $relatedEvents,
         array $delta,
-        ?array $oldResource = null, // <-- (က) Parameter အသစ် (၁)
-        ?array $newResource = null  // <-- (ခ) Parameter အသစ် (၂)
-    ): bool { // <-- (ဂ) Return type ကို 'bool' ပြောင်းပါ
+        ?array $oldResource = null,
+        ?array $newResource = null
+    ): bool { 
         
         $record = Event::find($event['id']);
         
@@ -44,11 +44,10 @@ class EventCalendarWidget extends FullCalendarWidget
             ]);
         }
 
-        return true; // <-- (ဃ) 'true' ကို return ပြန်ပါ
+        return true;
     }
-    // ====================================================
 
-    // Data ဆွဲထုတ်တဲ့ Logic (အရင်အတိုင်း)
+    // Data ဆွဲထုတ်တဲ့ Logic (Bug Fix ပြီးသား)
     public function fetchEvents(array $fetchInfo): array
     {
         $isRunningInConsole = app()->runningInConsole();
@@ -57,12 +56,8 @@ class EventCalendarWidget extends FullCalendarWidget
 
         return Event::query()
             ->where(function ($query) use ($start, $end) {
-                $query->whereBetween('start_date', [$start, $end])
-                ->orWhereBetween('end_date', [$start, $end])
-                ->orWhere(function ($q) use ($start, $end) {
-                    $q->where('start_date', '<', $start)
-                      ->where('end_date', '>', $end);
-                });
+                $query->where('start_date', '<=', $end)
+                      ->where('end_date', '>=', $start);
             })
             ->get()
             ->map(function (Event $event) use ($isRunningInConsole) {
@@ -74,7 +69,7 @@ class EventCalendarWidget extends FullCalendarWidget
                     'end'   => $event->end_date,
                 ];
 
-                // Color Coding (အရင်အတိုင်း)
+                // Color Coding
                 $now = now();
                 if ($event->start_date > $now) {
                     $data['backgroundColor'] = '#059669'; // Green
@@ -87,7 +82,6 @@ class EventCalendarWidget extends FullCalendarWidget
                     $data['borderColor'] = '#B91C1C';
                 }
                 
-                // "Edit" page ကို သွားမယ့် 'url' (အရင်အတိုင်း)
                 if (! $isRunningInConsole) {
                     $data['url'] = EventResource::getUrl('edit', ['record' => $event]);
                 }
@@ -95,5 +89,23 @@ class EventCalendarWidget extends FullCalendarWidget
                 return $data;
             })
             ->all();
+    }
+    
+    // === (၂) windowResize JS block ကို လုံးဝ ဖြုတ်လိုက်ပါပြီ ===
+    public function config(): array
+    {
+        return [
+            // "Today" ခလုတ်ကို ဘယ်ဘက်ထောင့်မှာ ထည့်ပါ
+            'headerToolbar' => [
+                'left' => 'prev,next today',
+                'center' => 'title',
+                'right' => 'dayGridMonth,timeGridWeek,listWeek', // View options
+            ],
+            
+            // Default view (Desktop)
+            'initialView' => 'dayGridMonth',
+
+            // windowResize option ကို ဒီမှာ ဖယ်ရှားလိုက်ပါပြီ
+        ];
     }
 }

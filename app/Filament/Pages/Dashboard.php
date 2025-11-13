@@ -3,7 +3,6 @@
 namespace App\Filament\Pages;
 
 use Filament\Pages\Page;
-use App\Filament\Widgets\BudgetStats; 
 use App\Filament\Widgets\EventCalendarWidget;
 
 class Dashboard extends Page
@@ -17,7 +16,6 @@ class Dashboard extends Page
     public function getWidgets(): array
     {
         return [
-            BudgetStats::class,
             EventCalendarWidget::class,
         ];
     }
