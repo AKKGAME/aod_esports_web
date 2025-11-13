@@ -52,28 +52,10 @@
             color: #ffffff;
         }
 
-        /* ===== 3. Animations & Keyframes ===== */
-        @keyframes kenburns {
-            0% { background-size: 100%; }
-            100% { background-size: 110%; }
-        }
-        @keyframes logoPulse {
-            0%, 100% {
-                transform: scale(1);
-                filter: drop-shadow(0 0 15px var(--primary-color));
-            }
-            50% {
-                transform: scale(1.05);
-                filter: drop-shadow(0 0 30px var(--primary-color));
-            }
-        }
-        @keyframes shine {
-            to { background-position: -200% center; }
-        }
-        @keyframes bounce {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(10px); }
-        }
+        /* ===== 3. Animations & Keyframes (ရှင်းလင်းပြီး) ===== */
+        /* @keyframes kenburns, @keyframes logoPulse, @keyframes shine, @keyframes bounce, @keyframes spin, @keyframes clean-flicker (အားလုံး ဖြုတ်လိုက်ပါပြီ) */
+        
+        /* (Scroll animation ကိုတော့ ချန်ထားပါမယ်) */
         .fade-in-section {
             opacity: 0;
             transform: translateY(30px);
@@ -83,16 +65,9 @@
             opacity: 1;
             transform: translateY(0);
         }
-        @keyframes spin {
-            0% { --rotate: 0deg; }
-            100% { --rotate: 360deg; }
-        }
-        @keyframes clean-flicker {
-            from { text-shadow: 0 0 8px rgba(0, 255, 127, 0.7); }
-            to { text-shadow: 0 0 20px rgba(0, 255, 127, 1); }
-        }
+        /* (Tournament အတွက် ကျန်နေတဲ့ animation တွေ) */
         @keyframes pulse-live { 0% { box-shadow: 0 0 0 0 rgba(255, 27, 27, 0.7); } 70% { box-shadow: 0 0 0 10px rgba(255, 27, 27, 0); } 100% { box-shadow: 0 0 0 0 rgba(255, 27, 27, 0); } }
-
+        @keyframes fade-in-row { to { opacity: 1; transform: translateY(0); } }
 
         /* ===== 4. Reusable Components (Buttons, etc.) ===== */
         .btn-primary-custom, .btn-secondary-custom {
@@ -133,10 +108,9 @@
             box-shadow: 0 0 15px var(--primary-color);
         }
 
-
         /* ===== 5. Page Sections ===== */
 
-        /* --- Header & Navbar (Consolidated) --- */
+        /* --- Header & Navbar --- */
         .header .navbar {
             background-color: transparent;
             transition: background-color 0.4s ease;
@@ -167,23 +141,13 @@
         .nav-link:hover, .nav-link.active {
             color: var(--primary-color) !important;
         }
-        .lang-switcher a {
-            cursor: pointer;
-            padding: 0.2rem 0.5rem;
-            border-radius: 5px;
-            transition: background-color 0.3s ease;
-        }
-        .lang-switcher a.active {
-            color: var(--primary-color);
-            font-weight: bold;
-        }
         .dropdown-item.lang-switcher.active {
             font-weight: bold;
             background-color: var(--primary-color);
             color: #0a0f1e;
         }
         
-        /* ===== Hero Section ===== */
+        /* --- Hero Section (Effect ဖြုတ်ပြီး) --- */
         .hero {
             height: 100vh;
             background: url('https://www.pubgmobile.com/images/event/home/part6.jpg') no-repeat center center/cover;
@@ -194,7 +158,7 @@
             align-items: center;
             text-align: center;
             overflow: hidden;
-            animation: kenburns 20s ease-out infinite;
+            /* animation: kenburns 20s ease-out infinite; (ဖြုတ်လိုက်ပါပြီ) */
         }
             
         .hero::before {
@@ -204,45 +168,42 @@
             background: linear-gradient(to top, var(--dark-color) 5%, rgba(0,0,0,0.6) 100%);
             z-index: 1;
         }
-
         .hero-content {
             position: relative;
             z-index: 2;
         }
-
         .hero-logo {
             width: 180px;
             height: auto;
-            animation: logoPulse 4s infinite ease-in-out;
+            /* animation: logoPulse 4s infinite ease-in-out; (ဖြုတ်လိုက်ပါပြီ) */
+            filter: drop-shadow(0 0 15px var(--primary-color)); /* Static glow effect */
         }
-
         .hero-title {
             font-family: var(--font-primary);
             font-size: 4.5rem;
             font-weight: 900;
+            /* (Shine effect အတွက် gradient ကို ချန်ထားပါမယ်၊ animation ပဲ ဖြုတ်ပါ) */
             background: linear-gradient(90deg, #fff, #fff, var(--primary-color), #fff, #fff);
             background-size: 200% auto;
             color: #fff;
             background-clip: text;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            animation: shine 5s linear infinite;
+            /* animation: shine 5s linear infinite; (ဖြုတ်လိုက်ပါပြီ) */
         }
-
         .hero-subtitle {
             font-size: 1.5rem;
             font-family: var(--font-primary);
             letter-spacing: 2px;
             color: #fff;
         }
-            
         .scroll-down {
             position: absolute;
             bottom: 30px;
             color: var(--primary-color);
             z-index: 3;
             font-size: 1.5rem;
-            animation: bounce 2s infinite;
+            /* animation: bounce 2s infinite; (ဖြုတ်လိုက်ပါပြီ) */
         }
 
         /* --- About Section --- */
@@ -255,8 +216,8 @@
             filter: drop-shadow(0 0 40px var(--primary-color));
         }
 
-        /* --- Teams & Roster Card --- */
-        .teams-section, .roster-section {
+        /* --- Team Card (ပုံမှန်အတိုင်း) --- */
+        .teams-section {
             padding: 100px 0;
             background-color: var(--dark-color);
         }
@@ -300,13 +261,11 @@
             flex-grow: 1;
         }
 
-        /* --- Sponsors & Footer Sections --- */
+        /* --- Sponsors Section --- */
         .sponsors-section {
             background-color: var(--dark-secondary);
             padding: 80px 0;
         }
-        
-        /* (FIX 2) Sponsor Logo ကို Dark Mode မှာ မြင်ရအောင် ပြင်ဆင်ထားပါသည် */
         .sponsor-card {
             background-color: var(--dark-secondary);
             border: 1px solid #2a344a;
@@ -335,12 +294,12 @@
             max-height: 80px; 
             max-width: 200px; 
             object-fit: contain;
-            filter: brightness(0) invert(1); /* Logo အနက်ကို အဖြူပြောင်း */
+            filter: brightness(0) invert(1); 
             opacity: 0.8;
             transition: all 0.3s ease;
         }
         .sponsor-card:hover .sponsor-card-logo {
-            filter: none; /* Hover လုပ်မှ အရောင်အစစ်ပြ */
+            filter: none; 
             opacity: 1;
         }
         .sponsor-card-name {
@@ -370,6 +329,7 @@
             padding-bottom: 10px;
         }
 
+        /* --- Footer --- */
         .footer {
             background-color: #000;
         }
@@ -427,24 +387,21 @@
         }
         .game-logo { width: 70px; height: auto; }
 
-        /* --- Player Card (Spinning Border) --- */
-        @property --rotate {
-            syntax: "<angle>";
-            initial-value: 132deg;
-            inherits: false;
-        }
+        /* --- Player Card (Spinning Border ဖြုတ်ပြီး) --- */
+        /* @property --rotate (ဖြုတ်လိုက်ပါပြီ) */
+        
         .player-card {
-            background: transparent;
+            background-color: var(--dark-secondary); /* (၁) Inner က style ကို အပြင်ကို ထုတ်ပါ */
             border-radius: 12px;
-            overflow: visible;
+            overflow: hidden; /* (၂) overflow: visible အစား hidden ပြန်ထားပါ */
             text-align: center;
             position: relative;
             z-index: 1;
-            transition: transform 0.4s ease;
-            border: none;
+            transition: transform 0.4s ease, box-shadow 0.4s ease, border-color 0.4s ease; /* (၃) team-card လိုမျိုး transition ထည့်ပါ */
+            border: 1px solid #222; /* (၄) team-card လိုမျိုး border ထည့်ပါ */
         }
         .player-card-inner {
-            background-color: var(--dark-secondary);
+            /* (၅) ဒီ class က အခု ဘာမှ မလုပ်တော့ပါဘူး (HTML structure မပြောင်းချင်လို့ ချန်ထားတာပါ) */
             width: 100%;
             height: 100%;
             border-radius: inherit;
@@ -452,37 +409,13 @@
             position: relative;
             z-index: 2;
         }
-        .player-card::before,
-        .player-card::after {
-            content: "";
-            position: absolute;
-            z-index: 0;
-            animation: spin 3s linear infinite;
-            opacity: 0.4; 
-            transition: opacity 0.5s ease;
-        }
-        .player-card::before {
-            width: 104%;
-            height: 102%;
-            border-radius: 12px;
-            background-image: linear-gradient( var(--rotate), transparent 30%, var(--primary-color), #90ee90 70%, transparent );
-            top: -1%;
-            left: -2%;
-        }
-        .player-card::after {
-            top: 0; left: 0; right: 0; bottom: 0;
-            margin: auto;
-            border-radius: inherit;
-            transform: scale(0.9);
-            filter: blur(25px);
-            background-image: linear-gradient( var(--rotate), transparent, var(--primary-color) );
-        }
+        /* .player-card::before, .player-card::after (Spinning border တွေ ဖြုတ်လိုက်ပါပြီ) */
+
         .player-card:hover {
             transform: translateY(-10px);
-        }
-        .player-card:hover::before,
-        .player-card:hover::after {
-            opacity: 1;
+            /* (၆) team-card လိုမျိုး hover effect ပြောင်းထည့်ပါ */
+            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.2);
+            border-color: rgba(0, 255, 127, 0.5); 
         }
 
         /* --- Player Card Content --- */
@@ -537,10 +470,11 @@
             width: 25px; height: auto; border-radius: 3px;
             box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
         }
-        .player-card:hover .player-name { animation: clean-flicker 2s infinite alternate; }
+        /* .player-card:hover .player-name { animation: clean-flicker 2s infinite alternate; } (Flicker effect ဖြုတ်လိုက်ပါပြီ) */
+        
         .player-real-name {
             color: #8a93a7; font-size: 0.9rem; font-weight: 600;
-            text-transform: uppercase; letter-spacing: 1.5px;
+            text-transform: uppercase; letter-spacing: 1px;
             margin-bottom: 15px; min-height: 20px;
             display: flex; justify-content: center; align-items: center;
         }
@@ -558,6 +492,9 @@
         .team-achievements li { font-size: 1.1rem; margin-bottom: 10px; }
         .team-achievements li .fa-trophy { color: #ffd700; margin-right: 10px; }
 
+        
+/* resources/views/layouts/public.blade.php (CSS အဟောင်းကို အစားထိုးပါ) */
+
         /* ===== 7. Responsive Media Queries (Roster) ===== */
         @media (max-width: 992px) {
             .about-section .text-center {
@@ -574,7 +511,37 @@
             .hero-logo { width: 120px; }
             .section-title { font-size: 1.8rem; }
             
-            /* (FIX 4) Player Profile Page - Mobile CSS */
+            /* (၁) Mobile မှာ Card တွေ hover (မြောက်တက်) effect ကို ပိတ်ပါ */
+            .player-card:hover {
+                transform: none;
+                /* (shadow ကို မူလ card shadow နဲ့ တူအောင် ပြန်ထားပါ) */
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            }
+            
+            /* === (၂) (အရေးကြီး) Mobile မှာ Spinning Border ကို လုံးဝ ပိတ်ပါ === */
+            .player-card::before,
+            .player-card::after {
+                animation: none; /* spin animation ကို ပိတ်ပါ */
+                opacity: 0; /* လုံးဝ ဖျောက်ထားပါ */
+                width: 100%; /* (overflow မဖြစ်အောင် width 100% ပြန်ထားပါ) */
+                left: 0;
+            }
+            /* === (Spinning Border အဆုံး) === */
+
+            /* (၃) Mobile မှာ Player Name flicker animation ကို ပိတ်ပါ */
+            .player-card:hover .player-name {
+                animation: none;
+            }
+            
+            /* (၄) Card ထဲက စာလုံး အရွယ်အစား အနည်းငယ် ချိန်ညှိပါ */
+            .player-name {
+                font-size: 1.15rem;
+            }
+            .player-real-name {
+                font-size: 0.8rem;
+            }
+            
+            /* (၅) Player Profile Page အတွက် CSS */
             #profile-details .fs-4 {
                 font-size: 1.25rem !important; 
             }
@@ -582,7 +549,6 @@
                 font-size: 1.3rem;
             }
         }
-        
     </style>
 </head>
 <body> 
