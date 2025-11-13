@@ -583,27 +583,6 @@
             }
         }
         
-        /* (FIX 5) Roster Page - Mobile CSS */
-        @media (max-width: 768px) {
-            .player-card:hover {
-                transform: none;
-                box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
-            }
-            .player-card::before,
-            .player-card::after {
-                animation: none; 
-                opacity: 0.4; 
-            }
-            .player-card:hover .player-name {
-                animation: none;
-            }
-            .player-name {
-                font-size: 1.15rem;
-            }
-            .player-real-name {
-                font-size: 0.8rem;
-            }
-        }
     </style>
 </head>
 <body> 
