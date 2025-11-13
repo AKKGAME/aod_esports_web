@@ -11,7 +11,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
 
-<style>
+    <style>
         /* ===== 1. General Setup & Color Variables ===== */
         :root {
             --primary-color: #00ff7f; /* Esports Green */
@@ -31,7 +31,7 @@
             font-family: var(--font-secondary);
         }
 
-        /* ===== 2. Fluid Typography (for smooth scaling) ===== */
+        /* ===== 2. Fluid Typography ===== */
         h1, .hero-title, .roster-hero-title {
             font-family: var(--font-primary);
             font-weight: 900;
@@ -186,6 +186,7 @@
         /* ===== (၁) Hero Section (ပုံအသစ်နဲ့) ===== */
         .hero {
             height: 100vh;
+            /* (FIX 1) URL အမှန်ကို ပြောင်းလဲ အသုံးပြုထားပါသည် */
             background: url('https://www.pubgmobile.com/images/event/home/part6.jpg') no-repeat center center/cover;
             position: relative;
             display: flex;
@@ -305,7 +306,7 @@
             background-color: var(--dark-secondary);
             padding: 80px 0;
         }
-        /* ... (Sponsor Card styles - အရင်အတိုင်း) ... */
+        /* (FIX 2) Sponsor Logo ကို Dark Mode မှာ မြင်ရအောင် ပြင်ဆင်ထားပါသည် */
         .sponsor-card {
             background-color: var(--dark-secondary);
             border: 1px solid #2a344a;
@@ -334,12 +335,12 @@
             max-height: 80px; 
             max-width: 200px; 
             object-fit: contain;
-            filter: brightness(0.5); 
+            filter: brightness(0) invert(1); /* Logo အနက်ကို အဖြူပြောင်း */
             opacity: 0.8;
             transition: all 0.3s ease;
         }
         .sponsor-card:hover .sponsor-card-logo {
-            filter: none;
+            filter: none; /* Hover လုပ်မှ အရောင်အစစ်ပြ */
             opacity: 1;
         }
         .sponsor-card-name {
@@ -403,6 +404,7 @@
         /* ===== 6. Roster Page Specific Styles ===== */
         .roster-hero {
             padding-top: 150px; padding-bottom: 80px;
+            /* (FIX 1) URL အမှန်ကို ပြောင်းလဲ အသုံးပြုထားပါသည် */
             background: url('https://www.pubgmobile.com/images/event/home/part6.jpg') no-repeat center center/cover;
             position: relative; z-index: 1;
         }
@@ -564,7 +566,6 @@
             }
         }
         
-        /* === (၂) Mobile အတွက် Hero အမြင့်ကို ပြင်ဆင်ပါ === */
         @media (max-width: 768px) {
             .hero {
                 height: 85vh;
