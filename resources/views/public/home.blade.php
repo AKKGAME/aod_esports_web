@@ -53,75 +53,8 @@
                     </div>
                 @endforelse
             </div>
-            
-        </div>
-    </section>
-
-    <section id="sponsors" class="sponsors-section py-5 fade-in-section">
-        <div class="container">
-            <h2 class="section-title text-center mb-5" data-lang-key="sponsorsTitle">OUR PARTNERS</h2>
-            
-            @if ($groupedSponsors->has('Title Partner'))
-                <h4 class="sponsor-level-title">Title Partner</h4>
-                <div class="row g-4 justify-content-center mb-5">
-                    @foreach ($groupedSponsors['Title Partner'] as $sponsor)
-                        <div class="col-lg-6 col-md-8"> <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
-                                <div class="sponsor-card">
-                                    <div class="sponsor-card-logo-wrapper">
-                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
-                                    </div>
-                                    <h3 class="sponsor-card-name">{{ $sponsor->name }}</h3>
-                                    <p class="sponsor-card-desc">{{ $sponsor->description }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-
-            @if ($groupedSponsors->has('Official Partner'))
-                <h4 class="sponsor-level-title">Official Partners</h4>
-                <div class="row g-4 justify-content-center mb-5">
-                    @foreach ($groupedSponsors['Official Partner'] as $sponsor)
-                        <div class="col-lg-4 col-md-6"> <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
-                                <div class="sponsor-card">
-                                    <div class="sponsor-card-logo-wrapper">
-                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
-                                    </div>
-                                    <h3 class="sponsor-card-name">{{ $sponsor->name }}</h3>
-                                    <p class="sponsor-card-desc">{{ $sponsor->description }}</p>
-                                </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
-
-            @php
-                // ကျန်တဲ့ level တွေကို စုစည်းလိုက်ပါ
-                $otherSponsors = collect()
-                    ->merge($groupedSponsors['Partner'] ?? [])
-                    ->merge($groupedSponsors['Supporter'] ?? []);
-            @endphp
-
-            @if ($otherSponsors->isNotEmpty())
-                <h4 class="sponsor-level-title">Partners & Supporters</h4>
-                <div class="row g-4 justify-content-center">
-                    @foreach ($otherSponsors as $sponsor)
-                        <div class="col-lg-3 col-md-4 col-sm-6"> <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
-                                <div class="sponsor-card">
-                                    <div class="sponsor-card-logo-wrapper">
-                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
-                                    </div>
-                                    <h3 class="sponsor-card-name" style="font-size: 1.1rem;">{{ $sponsor->name }}</h3>
-                                    </div>
-                            </a>
-                        </div>
-                    @endforeach
-                </div>
-            @endif
 
         </div>
     </section>
-
+    
 @endsection

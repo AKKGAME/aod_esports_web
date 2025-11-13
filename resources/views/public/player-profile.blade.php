@@ -18,9 +18,10 @@
 
     <section id="profile-details" class="roster-section py-5 fade-in-section">
         <div class="container">
-            <div class="row g-5 justify-content-center">
+            
+            <div class="row g-4 g-md-5 justify-content-center">
 
-                <div class="col-lg-5 col-md-6">
+                <div class="col-12 col-md-6 col-lg-5">
                     <div class="player-card">
                         <div class="player-card-inner"> 
                             <img src="{{ asset('https://s3.us-east-005.backblazeb2.com/ovtvmain/Upload%2FAOD%2FLogo%20PNG%2FAOD%20PNG.png') }}" alt="AOD Logo" class="player-card-logo">
@@ -32,8 +33,9 @@
                     </div>
                 </div>
 
-                <div class="col-lg-7 col-md-6">
-                    <h2 class="section-title mb-4" style="font-size: 2.2rem; text-align: left;">PLAYER DETAILS</h2>
+                <div class="col-12 col-md-6 col-lg-7">
+                    
+                    <h2 class="section-title mb-4 text-center text-md-start">PLAYER DETAILS</h2>
 
                     <div class="row g-3 mb-4 fs-5">
                         <div class="col-md-6">

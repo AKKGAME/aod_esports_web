@@ -183,10 +183,9 @@
             color: #0a0f1e;
         }
         
-        /* ===== (၁) Hero Section (ပုံအသစ်နဲ့) ===== */
+        /* ===== Hero Section ===== */
         .hero {
             height: 100vh;
-            /* (FIX 1) URL အမှန်ကို ပြောင်းလဲ အသုံးပြုထားပါသည် */
             background: url('https://www.pubgmobile.com/images/event/home/part6.jpg') no-repeat center center/cover;
             position: relative;
             display: flex;
@@ -306,6 +305,7 @@
             background-color: var(--dark-secondary);
             padding: 80px 0;
         }
+        
         /* (FIX 2) Sponsor Logo ကို Dark Mode မှာ မြင်ရအောင် ပြင်ဆင်ထားပါသည် */
         .sponsor-card {
             background-color: var(--dark-secondary);
@@ -404,7 +404,6 @@
         /* ===== 6. Roster Page Specific Styles ===== */
         .roster-hero {
             padding-top: 150px; padding-bottom: 80px;
-            /* (FIX 1) URL အမှန်ကို ပြောင်းလဲ အသုံးပြုထားပါသည် */
             background: url('https://www.pubgmobile.com/images/event/home/part6.jpg') no-repeat center center/cover;
             position: relative; z-index: 1;
         }
@@ -574,6 +573,36 @@
             .hero-subtitle { font-size: 1.2rem; }
             .hero-logo { width: 120px; }
             .section-title { font-size: 1.8rem; }
+            
+            /* (FIX 4) Player Profile Page - Mobile CSS */
+            #profile-details .fs-4 {
+                font-size: 1.25rem !important; 
+            }
+            #profile-details .player-socials a {
+                font-size: 1.3rem;
+            }
+        }
+        
+        /* (FIX 5) Roster Page - Mobile CSS */
+        @media (max-width: 768px) {
+            .player-card:hover {
+                transform: none;
+                box-shadow: 0 10px 30px rgba(0,0,0,0.08); 
+            }
+            .player-card::before,
+            .player-card::after {
+                animation: none; 
+                opacity: 0.4; 
+            }
+            .player-card:hover .player-name {
+                animation: none;
+            }
+            .player-name {
+                font-size: 1.15rem;
+            }
+            .player-real-name {
+                font-size: 0.8rem;
+            }
         }
     </style>
 </head>
@@ -585,6 +614,79 @@
     <main>
         @yield('content')
     </main>
+
+    <section id="sponsors" class="sponsors-section py-5 fade-in-section">
+        <div class="container">
+            <h2 class="section-title text-center mb-5" data-lang-key="sponsorsTitle">OUR PARTNERS</h2>
+            
+            @if (isset($groupedSponsors) && $groupedSponsors->has('Title Partner'))
+                <h4 class="sponsor-level-title">Title Partner</h4>
+                <div class="row g-4 justify-content-center mb-5">
+                    @foreach ($groupedSponsors['Title Partner'] as $sponsor)
+                        <div class="col-lg-6 col-md-8"> 
+                            <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
+                                <div class="sponsor-card">
+                                    <div class="sponsor-card-logo-wrapper">
+                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
+                                    </div>
+                                    <h3 class="sponsor-card-name">{{ $sponsor->name }}</h3>
+                                    <p class="sponsor-card-desc">{{ $sponsor->description }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+            @if (isset($groupedSponsors) && $groupedSponsors->has('Official Partner'))
+                <h4 class="sponsor-level-title">Official Partners</h4>
+                <div class="row g-4 justify-content-center mb-5">
+                    @foreach ($groupedSponsors['Official Partner'] as $sponsor)
+                        <div class="col-lg-4 col-md-6">
+                            <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
+                                <div class="sponsor-card">
+                                    <div class="sponsor-card-logo-wrapper">
+                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
+                                    </div>
+                                    <h3 class="sponsor-card-name">{{ $sponsor->name }}</h3>
+                                    <p class="sponsor-card-desc">{{ $sponsor->description }}</p>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+            
+            @php
+                if (isset($groupedSponsors)) {
+                    $otherSponsors = collect()
+                        ->merge($groupedSponsors['Partner'] ?? [])
+                        ->merge($groupedSponsors['Supporter'] ?? []);
+                } else {
+                    $otherSponsors = collect();
+                }
+            @endphp
+
+            @if ($otherSponsors->isNotEmpty())
+                <h4 class="sponsor-level-title">Partners & Supporters</h4>
+                <div class="row g-4 justify-content-center">
+                    @foreach ($otherSponsors as $sponsor)
+                        <div class="col-lg-3 col-md-4 col-sm-6">
+                            <a href="{{ $sponsor->website_url ?? '#' }}" target="_blank" class="text-decoration-none">
+                                <div class="sponsor-card">
+                                    <div class="sponsor-card-logo-wrapper">
+                                        <img src="{{ $sponsor->logo_url }}" alt="{{ $sponsor->name }} Logo" class="sponsor-card-logo">
+                                    </div>
+                                    <h3 class="sponsor-card-name" style="font-size: 1.1rem;">{{ $sponsor->name }}</h3>
+                                </div>
+                            </a>
+                        </div>
+                    @endforeach
+                </div>
+            @endif
+
+        </div>
+    </section>
 
     <footer id="contact" class="footer pt-5 pb-4">
         <div class="container text-center">
