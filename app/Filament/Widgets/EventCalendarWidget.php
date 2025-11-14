@@ -13,19 +13,16 @@ class EventCalendarWidget extends FullCalendarWidget
     protected static ?int $sort = 1; 
     public Model | string | null $model = Event::class;
 
-    // "New event" ခလုတ် ဖြုတ်ရန်
     public function headerActions(): array
     {
         return [];
     }
 
-    // Drag & Drop ဖွင့်ရန်
     public static function canManageEvents(): bool
     {
         return true;
     }
 
-    // Drag & Drop Logic (Error ရှင်းပြီးသား)
     public function onEventDrop(
         array $event,
         array $oldEvent,
@@ -47,7 +44,6 @@ class EventCalendarWidget extends FullCalendarWidget
         return true;
     }
 
-    // Data ဆွဲထုတ်တဲ့ Logic (Bug Fix ပြီးသား)
     public function fetchEvents(array $fetchInfo): array
     {
         $isRunningInConsole = app()->runningInConsole();
@@ -91,21 +87,17 @@ class EventCalendarWidget extends FullCalendarWidget
             ->all();
     }
     
-    // === (၂) windowResize JS block ကို လုံးဝ ဖြုတ်လိုက်ပါပြီ ===
     public function config(): array
     {
         return [
-            // "Today" ခလုတ်ကို ဘယ်ဘက်ထောင့်မှာ ထည့်ပါ
             'headerToolbar' => [
                 'left' => 'prev,next today',
                 'center' => 'title',
-                'right' => 'dayGridMonth,timeGridWeek,listWeek', // View options
+                'right' => 'dayGridMonth,timeGridWeek,listWeek',
             ],
             
-            // Default view (Desktop)
             'initialView' => 'dayGridMonth',
 
-            // windowResize option ကို ဒီမှာ ဖယ်ရှားလိုက်ပါပြီ
         ];
     }
 }

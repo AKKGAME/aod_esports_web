@@ -23,7 +23,9 @@ use App\Filament\Resources\EventResource;
 use App\Filament\Resources\PlayerResource;
 use App\Filament\Resources\TeamResource;
 use App\Filament\Resources\SponsorResource;
+use App\Filament\Resources\ScrimResource;
 use App\Filament\Resources\UserResource;
+
 
 use Saade\FilamentFullCalendar\FilamentFullCalendarPlugin;
 
@@ -49,7 +51,9 @@ class AdminPanelProvider extends PanelProvider
                 PlayerResource::class,
                 TeamResource::class,
                 SponsorResource::class,
+                ScrimResource::class,
                 UserResource::class,
+                
             ])
             
             ->discoverWidgets(in: app_path('Filament/Widgets'), for: 'App\\Filament\\Widgets')

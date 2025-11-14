@@ -11,8 +11,11 @@ return new class extends Migration
      */
 public function up(): void
 {
-    Schema::table('expenses', function (Blueprint $table) {
-        $table->softDeletes()->after('updated_at'); // deleted_at column ကို ထပ်တိုးပါ
+    Schema::table('scrims', function (Blueprint $table) {
+        // (အရေးကြီး) Foreign Key Constraint ကို အရင်ဖျက်ပါ
+        $table->dropForeign(['user_id']);
+        // Column ကို ဖျက်ပါ
+        $table->dropColumn('user_id');
     });
 }
 
@@ -21,7 +24,7 @@ public function up(): void
      */
     public function down(): void
     {
-        Schema::table('expenses', function (Blueprint $table) {
+        Schema::table('scrims', function (Blueprint $table) {
             //
         });
     }
