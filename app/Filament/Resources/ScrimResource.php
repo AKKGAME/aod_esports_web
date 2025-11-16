@@ -12,7 +12,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\ScrimResource\RelationManagers\DetailsRelationManager;
 use Filament\Tables\Columns\Summarizers\Sum;
 use App\Filament\Resources\ScrimResource\Pages;
-use App\Filament\Resources\ScrimResource\Pages\ViewScrimAnalysis;
+// use App\Filament\Resources\ScrimResource\Pages\ViewScrimAnalysis;
 
 class ScrimResource extends Resource
 {
@@ -54,11 +54,11 @@ class ScrimResource extends Resource
                 ),
             ])
             ->actions([
-                Tables\Actions\Action::make('viewAnalysis')
-                    ->label('View Analysis')
-                    ->icon('heroicon-o-chart-pie')
-                    ->color('gray')
-                    ->url(fn (Scrim $record): string => Pages\ViewScrimAnalysis::getUrl(['record' => $record])),
+                // Tables\Actions\Action::make('viewAnalysis')
+                //     ->label('View Analysis')
+                //     ->icon('heroicon-o-chart-pie')
+                //     ->color('gray'),
+                //     ->url(fn (Scrim $record): string => Pages\ViewScrimAnalysis::getUrl(['record' => $record])),
                 Tables\Actions\EditAction::make(),
                 Tables\Actions\DeleteAction::make(),
             ]);
@@ -75,7 +75,7 @@ class ScrimResource extends Resource
             'index' => Pages\ListScrims::route('/'),
             'create' => Pages\CreateScrim::route('/create'),
             'edit' => Pages\EditScrim::route('/{record}/edit'),
-            'analysis' => Pages\ViewScrimAnalysis::route('/{record}/analysis'),
+            // 'analysis' => Pages\ViewScrimAnalysis::route('/{record}/analysis'),
         ];
     }
 }
